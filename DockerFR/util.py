@@ -230,7 +230,7 @@ def calculate_face_similarity(image_a: Any, image_b: Any) -> float:
     if keypoints_b is None:
         raise ValueError("No face detected in image B")
     
-    # 3. 얼굴 정렬 (anti-spoofing 체크용)
+    # 3. 얼굴 정렬
     aligned_a = warp_face(img_a, keypoints_a)
     aligned_b = warp_face(img_b, keypoints_b)
     
