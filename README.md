@@ -15,7 +15,17 @@ All deep learning inference (face detection and recognition) runs on Triton, whi
 ## Quick Start (이 파트로 test하시면 됩니다. 이 파트 밑은 프로젝트 디테일.)
 
 ```bash
+# 0. Create virtual envs and clone
+
+# ***Create virtual environment and activate(for extracting onnx files)***
+conda create -n <NAME> python=3.10
+conda activate <NAME>
+
+# Clone into the desired folder
+git clone https://github.com/wonseok289/AIsystem-2502.git
+
 # Navigate to project directory
+cd AIsystem-2502
 cd DockerFRTriton
 
 # 1. Extract models
