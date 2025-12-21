@@ -28,6 +28,24 @@ if [ "${START_TRITON}" = true ]; then
     kill "${TRITON_PID}" 2>/dev/null || true
   }
   trap cleanup EXIT
+  
+  # Wait for Triton to be ready
+  echo "[start] Waiting for Triton to be ready..."
+  MAX_RETRIES=30
+  RETRY_COUNT=0
+  while [ ${RETRY_COUNT} -lt ${MAX_RETRIES} ]; do
+    if curl -s "http://localhost:${TRITON_HTTP_PORT}/v2/health/ready" > /dev/null 2>&1; then
+      echo "[start] Triton is ready!"
+      break
+    fi
+    RETRY_COUNT=$((RETRY_COUNT + 1))
+    echo "[start] Waiting for Triton... (${RETRY_COUNT}/${MAX_RETRIES})"
+    sleep 2
+  done
+  
+  if [ ${RETRY_COUNT} -eq ${MAX_RETRIES} ]; then
+    echo "[start] WARNING: Triton did not become ready in time"
+  fi
 fi
 
 echo "[start] Launching FastAPI on port ${FASTAPI_PORT}"
