@@ -17,7 +17,7 @@ All deep learning inference (face detection and recognition) runs on Triton, whi
 ```bash
 # 0. Create virtual envs and clone
 
-# ***Create virtual environment and activate(for extracting onnx files)***
+# ***Create virtual environment and activate for extracting onnx files(Please make sure to use this Python version)***
 conda create -n <NAME> python=3.10
 conda activate <NAME>
 
